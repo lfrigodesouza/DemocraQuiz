@@ -1,10 +1,11 @@
-import styled from 'styled-components'
-import db from '../db.json';
-import Widget from '../src/components/Widget'
-import QuizLogo from '../src/components/QuizLogo'
-import QuizBackground from '../src/components/QuizBackground'
-import Footer from '../src/components/Footer'
-import GitHubCorner from '../src/components/GitHubCorner'
+import styled from "styled-components";
+import db from "../db.json";
+import CustomHead from "../src/components/CustomHead";
+import Widget from "../src/components/Widget";
+import QuizLogo from "../src/components/QuizLogo";
+import QuizBackground from "../src/components/QuizBackground";
+import Footer from "../src/components/Footer";
+import GitHubCorner from "../src/components/GitHubCorner";
 
 export const QuizContainer = styled.div`
   width: 100%;
@@ -20,6 +21,7 @@ export const QuizContainer = styled.div`
 export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
+      <CustomHead></CustomHead>
       <QuizContainer>
         <QuizLogo />
         <Widget>
@@ -34,7 +36,6 @@ export default function Home() {
         <Widget>
           <Widget.Content>
             <h1>Quizes da Galera</h1>
-
             <p>lorem ipsum dolor sit amet...</p>
           </Widget.Content>
         </Widget>
