@@ -1,7 +1,7 @@
 {
   "bg": "https://i.postimg.cc/NMn8GwgS/brasilia-america10.png",
-  "title": "Quiz sobre a democracia Brasileira",
-  "description": "Teste os seus conhecimentos sobre a democracia brasileira",
+  "title": "DemocraQuiz",
+  "description": "O quanto você sabe sobre a democracia brasileira? Teste os seus conhecimentos!",
   "questions": [
     {
       "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
@@ -28,6 +28,7 @@
       "secondary": "#FABD10",
       "mainBg": "#2864AE",
       "contrastText": "#FFFFFF",
+      "lightContrastText": "#B2B2B2",
       "wrong": "#FF5722",
       "success": "#276025"
     },
