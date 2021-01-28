@@ -4,21 +4,126 @@
   "description": "O quanto você sabe sobre a democracia brasileira? Teste os seus conhecimentos!",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
-      "description": "Essa é pra aquecer",
-      "answer": 2,
-      "alternatives": [".elemento", "*elemento", "#elemento", "%elemento"]
+      "image": "https://i.postimg.cc/MGRH1mMt/constituicao-federal-de-1988.jpg",
+      "title": "Em que ano a atual Constituição da República Federativa do Brasil foi aprovada?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [1985, 1988, 1986, 1989]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
-      "description": "Faz tempo em haha",
+      "image": "https://i.postimg.cc/59km7fKG/plenario-senado-03.jpg",
+      "title": "O Senado Federal do Brasil possui quantos senadores?",
+      "description": "",
+      "answer": 2,
+      "alternatives": [80, 85, 81, 88]
+    },
+    {
+      "image": "https://i.postimg.cc/vmzrWy60/nilo-pecanha.jpg",
+      "title": "Qual foi o primeiro presidente negro do Brasil?",
+      "description": "",
+      "answer": 0,
+      "alternatives": ["Nilo Peçanha", "José Sarney", "Epitácio Pessoa", "Getúlio Vargas"]
+    },
+    {
+      "image": "https://i.postimg.cc/HnJbD7vN/republica-velha.jpg",
+      "title": "Em que ano terminou a Primeira República Brasileira (ou República Velha)?",
+      "description": "",
+      "answer": 0,
+      "alternatives": [1930, 1940, 1935, 1925]
+    },
+    {
+      "image": "https://i.postimg.cc/wT8k8wHc/Planalto-panorama.jpg",
+      "title": "Qual foi a primeira presidente mulher do Brasil?",
+      "description": "",
+      "answer": 1,
+      "alternatives": ["Princesa Isabel", "Dilma Rousseff", "Cármen Lúcia", "Marina Silva"]
+    },
+    {
+      "image": "https://i.postimg.cc/L8vkPRPN/gabinete-presidencial.jpg",
+      "title": "Qual foi o presidente que mais tempo ficou no poder no Brasil?",
+      "description": "",
+      "answer": 3,
+      "alternatives": [
+        "João Figueiredo",
+        "Luiz Inácio Lula da Silva",
+        "Fernando Henrique Cardoso",
+        "Getúlio Vargas"
+      ]
+    },
+    {
+      "image": "https://i.postimg.cc/WbzsVwnz/ditadura-militar.jpg",
+      "title": "Qual o período que durou a ditadura militar brasileira?",
+      "description": "",
+      "answer": 0,
+      "alternatives": ["1964 - 1985", "1964 - 1990", "1954 - 1985", "1954 - 1990"]
+    },
+    {
+      "image": "https://i.postimg.cc/FR6DLv22/posse-bolsonaro.jpg",
+      "title": "O atual presidente Jair Bolsonaro é Xº presidente do Brasil",
+      "description": "",
+      "answer": 2,
+      "alternatives": ["36º", "37º", "38º", "39º"]
+    },
+    {
+      "image": "https://i.postimg.cc/W19Wv05N/camara-deputados.jpg",
+      "title": "Quantos deputados compõe a Câmara dos Deputados?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [500, 513, 525, 531]
+    },
+    {
+      "image": "https://i.postimg.cc/DZhbpM18/praca-dos-tres-poderes.gif",
+      "title": "Qual não é um dos Três Poderes da República Brasileira?",
+      "description": "",
+      "answer": 2,
+      "alternatives": ["Executivo", "Legislativo", "Militar", "Judiciário"]
+    },
+    {
+      "image": "https://i.postimg.cc/5NDykrVb/Voto-Feminino.png",
+      "title": "Em que ano foi conquistado o voto feminino no Brasil?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [1936, 1932, 1928, 1929]
+    },
+    {
+      "image": "https://i.postimg.cc/qRgG4719/prudente-de-morais.jpg",
+      "title": "Qual foi o primeiro presidente eleito pelo voto popular no Brasil?",
+      "description": "",
       "answer": 0,
       "alternatives": [
-        "background: linear-gradient(#e66465, #9198e5);",
-        "background: gradient(#e66465, #9198e5);"
+        "Prudente de Morais",
+        "Getúlio Vargas",
+        "Itamar Franco",
+        "Deodoro da Fonseca"
       ]
+    },
+    {
+      "image": "https://i.postimg.cc/90mCrv75/impeachment.jpg",
+      "title": "Qual desses presidentes nunca enfrentou um processo de impeachment?",
+      "description": "",
+      "answer": 1,
+      "alternatives": ["Getúlio Vargas", "José Sarney", "Fernando Collor", "Dilma Rousseff"]
+    },
+    {
+      "image": "https://i.postimg.cc/0yDkXdx4/capital-brasil.jpg",
+      "title": "Qual dessas cidades nunca foi capital do Brasil?",
+      "description": "",
+      "answer": 2,
+      "alternatives": ["Salvador", "Rio de Janeiro", "São Vicente", "Brasília"]
+    },
+    {
+      "image": "https://i.postimg.cc/Xq6SCtB7/mapa-brasil.jpg",
+      "title": "O Brasil é composto por quantas unidades federativas?",
+      "description": "",
+      "answer": 3,
+      "alternatives": [29, 26, 28, 27]
+    },
+    {
+      "image": "https://i.postimg.cc/VNKFxtWq/urna-eleitoral.jpg",
+      "title": "Em que ano foi determinado o voto universal (sufragio universal) no Brasil?",
+      "description": "",
+      "answer": 2,
+      "alternatives": [1897, 1954, 1988, 1860]
     }
   ],
   "external": [""],

@@ -1,24 +1,8 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
-const Input = styled.input`
-  background-color: ${({ theme }) => theme.colors.mainBg};
-  padding: 10px;
-  border-radius: ${({ theme }) => theme.borderRadius};
-
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.lightContrastText};
-  }
-`;
-
-const Button = styled.button`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  color: ${({ theme }) => theme.colors.contrastText};
-  margin: 10px 0px;
-  padding: 10px;
-  border-radius: ${({ theme }) => theme.borderRadius};
-`;
+import Button from '../Button';
+import Input from '../Input';
 
 const FormWrapper = styled.div`
   display: flex;
@@ -41,9 +25,11 @@ export default function UserForm() {
             setName(evt.target.value);
           }}
           placeholder="Informe seu nome"
+          name="nomeUsuario"
+          value={name}
         />
         <Button type="submit" disabled={name.length === 0}>
-          {`Vamos jogar ${name}!`}
+          {`Vamos jogar ${name}`}
         </Button>
       </FormWrapper>
     </form>
