@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
-  arrayOf, number, shape, string, func, bool,
+  arrayOf, number, shape, string, func,
 } from 'prop-types';
+import styled from 'styled-components';
 import AlternativesForm from '../../components/AlternativesForm';
 import Button from '../../components/Button';
 import Loading from '../../components/Loading';
@@ -11,34 +12,8 @@ import QuizContainer from '../../components/QuizContainer';
 import QuizLogo from '../../components/QuizLogo';
 import Widget from '../../components/Widget';
 import BackLinkArrow from '../../components/BackLinkArrow';
-
-function ResultWidget({ results, name }) {
-  return (
-    <Widget>
-      <Widget.Header>
-        <BackLinkArrow href="/" />
-        {name ? `Seu resultado, ${name}:` : 'Seu resultado:'}
-      </Widget.Header>
-
-      <Widget.Content>
-        <p>
-          {`Você acertou ${results.filter((result) => !!result).length} das ${
-            results.length
-          } perguntas`}
-        </p>
-        <ul>
-          {results.map((result, resultIndex) => (
-            <li key={`result__${result}`}>
-              {`#${String(resultIndex + 1).padStart(2, '0')} Resultado: ${
-                result ? 'Acertou' : 'Errou'
-              }`}
-            </li>
-          ))}
-        </ul>
-      </Widget.Content>
-    </Widget>
-  );
-}
+import Result from '../../components/Result';
+import { CorrectAnswerIcon, WrongAnswerIcon } from '../../components/Icons';
 
 function LoadingWidget() {
   return (
@@ -52,11 +27,22 @@ function LoadingWidget() {
   );
 }
 
+const Wrapper = styled.div`
+  background-color: rgba(256, 256, 256, 0.25);
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  justify-content: center;
+  align-items: center;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  padding: 5px 0px;
+`;
+
 function QuestionWidget({
   question, totalQuestions, questionIndex, onSubmit, addResult,
 }) {
   const [selectedAlternative, setSelectedAlternative] = useState(undefined);
-  const [isQuestionSubmited, setIsQuestionSubmited] = useState(false);
+  const [isQuestionSubmitted, setIsQuestionSubmitted] = useState(false);
   const questionId = `question__${questionIndex}`;
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
@@ -82,11 +68,11 @@ function QuestionWidget({
         <AlternativesForm
           onSubmit={(evt) => {
             evt.preventDefault();
-            setIsQuestionSubmited(true);
+            setIsQuestionSubmitted(true);
             setTimeout(() => {
               addResult(isCorrect);
               onSubmit();
-              setIsQuestionSubmited(false);
+              setIsQuestionSubmitted(false);
               setSelectedAlternative(undefined);
             }, 1000);
           }}
@@ -101,7 +87,7 @@ function QuestionWidget({
                 as="label"
                 key={alternativeId}
                 data-selected={isSelected}
-                data-status={isQuestionSubmited && alternativeStatus}
+                data-status={isQuestionSubmitted && alternativeStatus}
               >
                 <input
                   style={{ display: 'none' }}
@@ -110,17 +96,27 @@ function QuestionWidget({
                   name={questionId}
                   checked={isSelected}
                   onChange={() => setSelectedAlternative(alternativeIndex)}
-                  disabled={isQuestionSubmited}
+                  disabled={isQuestionSubmitted}
                 />
                 {alternative}
               </Widget.Topic>
             );
           })}
+          {isQuestionSubmitted && isCorrect && (
+            <Wrapper initial="hidden" animate="show">
+              <div style={{ fontWeight: 'bold' }}>Você acertou!</div>
+              <CorrectAnswerIcon />
+            </Wrapper>
+          )}
+          {isQuestionSubmitted && !isCorrect && (
+            <Wrapper>
+              <div style={{ fontWeight: 'bold' }}>Você errou!</div>
+              <WrongAnswerIcon />
+            </Wrapper>
+          )}
           <Button type="submit" disabled={!hasAlternativeSelected}>
             Confirmar
           </Button>
-          {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
-          {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
         </AlternativesForm>
       </Widget.Content>
     </Widget>
@@ -179,7 +175,7 @@ export default function QuizPage({ questions, bg, logo }) {
 
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
-        {screenState === screenStates.RESULT && <ResultWidget results={results} name={name} />}
+        {screenState === screenStates.RESULT && <Result results={results} name={name} />}
       </QuizContainer>
     </QuizBackground>
   );
@@ -214,12 +210,4 @@ QuestionWidget.propTypes = {
   questionIndex: number.isRequired,
   onSubmit: func.isRequired,
   addResult: func.isRequired,
-};
-
-ResultWidget.defaultProps = {
-  name: undefined,
-};
-ResultWidget.propTypes = {
-  results: arrayOf(bool).isRequired,
-  name: string,
 };
