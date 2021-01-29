@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import db from '../db.json';
-import AlternativesForm from '../src/components/AlternativesForm';
-import Button from '../src/components/Button';
-import Loading from '../src/components/Loading';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizContainer from '../src/components/QuizContainer';
-import QuizLogo from '../src/components/QuizLogo';
-import Widget from '../src/components/Widget';
+import db from '../../db.json';
+import AlternativesForm from '../../src/components/AlternativesForm';
+import Button from '../../src/components/Button';
+import Loading from '../../src/components/Loading';
+import QuizBackground from '../../src/components/QuizBackground';
+import QuizContainer from '../../src/components/QuizContainer';
+import QuizLogo from '../../src/components/QuizLogo';
+import Widget from '../../src/components/Widget';
 
 function ResultWidget({ results, name }) {
   return (
@@ -164,7 +164,7 @@ export default function QuizPage() {
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
-        <QuizLogo />
+        <QuizLogo logo={db.logo} />
         {screenState === screenStates.QUIZ && (
           <QuestionWidget
             totalQuestions={totalQuestions}

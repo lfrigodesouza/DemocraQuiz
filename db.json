@@ -1,5 +1,6 @@
 {
   "bg": "https://i.postimg.cc/NMn8GwgS/brasilia-america10.png",
+  "logo": "https://i.postimg.cc/nr7FkG8R/democra-Quiz-Logo.png",
   "title": "DemocraQuiz",
   "description": "O quanto você sabe sobre a democracia brasileira? Teste os seus conhecimentos!",
   "questions": [
@@ -126,7 +127,12 @@
       "alternatives": [1897, 1954, 1988, 1860]
     }
   ],
-  "external": [""],
+  "external": [
+    "https://mrrobot-quiz.xandowski.vercel.app/",
+    "https://theofficequiz.brunaguedes92.vercel.app/",
+    "https://aluraquiz-wow.yuriramosc.vercel.app/",
+    "https://aluraquiz-simpsons.marcio-bernardes.vercel.app/"
+  ],
   "theme": {
     "colors": {
       "primary": "#46AD44",
