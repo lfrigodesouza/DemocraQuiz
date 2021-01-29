@@ -13,7 +13,12 @@ import QuizLogo from '../../components/QuizLogo';
 import Widget from '../../components/Widget';
 import BackLinkArrow from '../../components/BackLinkArrow';
 import Result from '../../components/Result';
-import { CorrectAnswerIcon, WrongAnswerIcon } from '../../components/Icons';
+import {
+  ConfirmSelection,
+  CorrectAnswerIcon,
+  NextQuestionIcon,
+  WrongAnswerIcon,
+} from '../../components/Icons';
 
 function LoadingWidget() {
   return (
@@ -27,9 +32,10 @@ function LoadingWidget() {
   );
 }
 
-const Wrapper = styled.div`
+const CheckContainer = styled.div`
   background-color: rgba(256, 256, 256, 0.25);
   display: flex;
+  flex-direction: column;
   margin: 0px;
   padding: 0px;
   justify-content: center;
@@ -38,14 +44,30 @@ const Wrapper = styled.div`
   padding: 5px 0px;
 `;
 
+const AnswerCheck = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 0px;
+  padding: 0px;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 0px;
+`;
+
 function QuestionWidget({
   question, totalQuestions, questionIndex, onSubmit, addResult,
 }) {
   const [selectedAlternative, setSelectedAlternative] = useState(undefined);
   const [isQuestionSubmitted, setIsQuestionSubmitted] = useState(false);
+  const [isQuestionConfirmed, setIsQuestionConfirmed] = useState(false);
   const questionId = `question__${questionIndex}`;
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
+
+  function confirmHandle(evt) {
+    evt.preventDefault();
+    setIsQuestionConfirmed(true);
+  }
 
   return (
     <Widget>
@@ -69,12 +91,11 @@ function QuestionWidget({
           onSubmit={(evt) => {
             evt.preventDefault();
             setIsQuestionSubmitted(true);
-            setTimeout(() => {
-              addResult(isCorrect);
-              onSubmit();
-              setIsQuestionSubmitted(false);
-              setSelectedAlternative(undefined);
-            }, 1000);
+            addResult(isCorrect);
+            onSubmit();
+            setIsQuestionSubmitted(false);
+            setIsQuestionConfirmed(false);
+            setSelectedAlternative(undefined);
           }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
@@ -87,7 +108,7 @@ function QuestionWidget({
                 as="label"
                 key={alternativeId}
                 data-selected={isSelected}
-                data-status={isQuestionSubmitted && alternativeStatus}
+                data-status={isQuestionConfirmed && alternativeStatus}
               >
                 <input
                   style={{ display: 'none' }}
@@ -96,26 +117,45 @@ function QuestionWidget({
                   name={questionId}
                   checked={isSelected}
                   onChange={() => setSelectedAlternative(alternativeIndex)}
-                  disabled={isQuestionSubmitted}
+                  disabled={isQuestionConfirmed}
                 />
                 {alternative}
               </Widget.Topic>
             );
           })}
-          {isQuestionSubmitted && isCorrect && (
-            <Wrapper initial="hidden" animate="show">
-              <div style={{ fontWeight: 'bold' }}>Você acertou!</div>
-              <CorrectAnswerIcon />
-            </Wrapper>
+          {isQuestionConfirmed && isCorrect && (
+            <CheckContainer initial="hidden" animate="show">
+              <AnswerCheck style={{ fontWeight: 'bold' }}>
+                Você acertou!
+                <CorrectAnswerIcon />
+              </AnswerCheck>
+            </CheckContainer>
           )}
-          {isQuestionSubmitted && !isCorrect && (
-            <Wrapper>
-              <div style={{ fontWeight: 'bold' }}>Você errou!</div>
-              <WrongAnswerIcon />
-            </Wrapper>
+          {isQuestionConfirmed && !isCorrect && (
+            <CheckContainer>
+              <AnswerCheck style={{ fontWeight: 'bold' }}>
+                Você errou!
+                <WrongAnswerIcon />
+              </AnswerCheck>
+              <div>{`Resposta correta: ${question.alternatives[question.answer]}`}</div>
+            </CheckContainer>
           )}
-          <Button type="submit" disabled={!hasAlternativeSelected}>
-            Confirmar
+          <Button
+            type="Button"
+            onClick={confirmHandle}
+            disabled={!hasAlternativeSelected}
+            hidden={isQuestionConfirmed}
+          >
+            <AnswerCheck>
+              <span>Confirmar</span>
+              <ConfirmSelection />
+            </AnswerCheck>
+          </Button>
+          <Button type="submit" hidden={!isQuestionConfirmed}>
+            <AnswerCheck>
+              <span>Continuar</span>
+              <NextQuestionIcon />
+            </AnswerCheck>
           </Button>
         </AlternativesForm>
       </Widget.Content>
