@@ -1,6 +1,8 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import {
+  arrayOf, number, shape, string, func, bool,
+} from 'prop-types';
 import AlternativesForm from '../../components/AlternativesForm';
 import Button from '../../components/Button';
 import Loading from '../../components/Loading';
@@ -13,7 +15,10 @@ import BackLinkArrow from '../../components/BackLinkArrow';
 function ResultWidget({ results, name }) {
   return (
     <Widget>
-      <Widget.Header>{name ? `Seu resultado, ${name}:` : 'Seu resultado:'}</Widget.Header>
+      <Widget.Header>
+        <BackLinkArrow href="/" />
+        {name ? `Seu resultado, ${name}:` : 'Seu resultado:'}
+      </Widget.Header>
 
       <Widget.Content>
         <p>
@@ -179,3 +184,42 @@ export default function QuizPage({ questions, bg, logo }) {
     </QuizBackground>
   );
 }
+
+QuizPage.defaultProps = {
+  logo: undefined,
+};
+QuizPage.propTypes = {
+  questions: arrayOf(
+    shape({
+      image: string.isRequired,
+      title: string.isRequired,
+      description: string,
+      answer: number,
+      alternatives: arrayOf(string).isRequired,
+    }),
+  ).isRequired,
+  bg: string.isRequired,
+  logo: string,
+};
+
+QuestionWidget.propTypes = {
+  question: shape({
+    image: string.isRequired,
+    title: string.isRequired,
+    description: string,
+    answer: number,
+    alternatives: arrayOf(string).isRequired,
+  }).isRequired,
+  totalQuestions: number.isRequired,
+  questionIndex: number.isRequired,
+  onSubmit: func.isRequired,
+  addResult: func.isRequired,
+};
+
+ResultWidget.defaultProps = {
+  name: undefined,
+};
+ResultWidget.propTypes = {
+  results: arrayOf(bool).isRequired,
+  name: string,
+};

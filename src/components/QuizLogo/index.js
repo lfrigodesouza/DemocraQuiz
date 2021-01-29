@@ -82,8 +82,12 @@ function Logo({ className, logo }) {
   );
 }
 
+Logo.defaultProps = {
+  logo: undefined,
+};
 Logo.propTypes = {
   className: PropTypes.string.isRequired,
+  logo: PropTypes.string,
 };
 
 const QuizLogo = styled(Logo)`
